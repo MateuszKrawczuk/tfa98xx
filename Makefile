@@ -43,6 +43,9 @@ MAKEARCH := $(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 all:
 	$(MAKEARCH) -C $(KDIR) M=$(PWD) modules
 
+modules:
+	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -c $(KDIR) M=$(shell pwd) O="$(KBUILD_OUTPUT)" modules
+
 modules_install:
 	$(MAKEARCH) INSTALL_MOD_STRIP=1 -C $(KDIR) M=$(shell pwd) modules_install
 
